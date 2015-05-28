@@ -1,4 +1,4 @@
-module Concerns::ResourceConcern
+module ResourceConcern
   extend ActiveSupport::Concern
 
   included do
