@@ -15,6 +15,7 @@ module ResourceConcern
     eval "@resource = @#{@resource_name}"
   end
   
+  module_function :get_resource
 private 
 
   def set_resource_name
