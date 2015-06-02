@@ -16,7 +16,6 @@ module ResourceConcern
   end
   
   module_function :get_resource
-private 
 
   def set_resource_name
     @resource_class = self.class.to_s.gsub(/Controller/,'').gsub(/.*::/,'').singularize
