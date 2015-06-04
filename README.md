@@ -27,3 +27,10 @@ def author_view
   # @post is now set so you can do something with it
 end
 ```
+
+ownable_concern forces the current_user to be the owner of an object  
+```
+alias :owner, :whatever_the_owner_is
+```
+
+It also accepts an "admin?" method on the user object to override ownership.
