@@ -7,6 +7,6 @@ module OwnableConcern
   end
 
   def current_user_must_be_creator
-    raise ActionController::RoutingError.new('You do not own this resource. Permission denied.')
+    raise ActionController::RoutingError.new('You do not own this resource. Permission denied.') unless user_signed_in? and (current_user.try(:admin?) or @resource.owner == current_user)
   end
 end
