@@ -27,7 +27,7 @@ def author_view
   # @post is now set so you can do something with it
 end
 ```
-
+# ownable_concern
 ownable_concern forces the current_user to be the owner of an object  
 ```
 alias :owner, :whatever_the_owner_is
