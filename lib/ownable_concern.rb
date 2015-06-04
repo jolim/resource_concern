@@ -1,4 +1,4 @@
-module Concerns::OwnableConcern
+module OwnableConcern
   extend ActiveSupport::Concern
 
   included do
