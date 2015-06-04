@@ -23,3 +23,5 @@ private
   end
 
 end
+
+require 'ownable_concern'
