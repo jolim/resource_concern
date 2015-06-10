@@ -30,7 +30,7 @@ If you don't want it to apply to any of [:edit, :destroy, :update], write your o
 class PostController < ApplicationController
   include ResourceConcern
   include OwnableConcern
-  before_action [:edit, :update] # anyone can destroy!
+  before_action :current_user_must_be_creator, [:edit, :update] # override defaults so anyone can destroy!
   
   def show
     current_user_must_be_creator # Nobody but the creator of the object can access it!
