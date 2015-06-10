@@ -20,7 +20,7 @@ end
 ```
 
 # ownable_concern
-This requires the use of the devise gem 
+This requires the use of the devise gem and ResourceConcern must be included directly above
 
 ownable_concern forces the current_user to be the owner of an object for [:edit, :destroy, :update]. If you want it to apply to another method, invoke current_user_must_be_creator in that method.  
 
@@ -37,7 +37,7 @@ class PostController < ApplicationController
   
 end
 ```
-To make it work with the resource, you need to 
+To make it work with the resource, you need to define the owner of the object.
 ```
 alias :owner, :whatever_the_owner_is
 ```
