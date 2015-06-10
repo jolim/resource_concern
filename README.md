@@ -28,6 +28,7 @@ If you don't want it to apply to any of [:edit, :destroy, :update], write your o
 
 ```
 class PostController < ApplicationController
+  include ResourceConcern
   include OwnableConcern
   before_action [:edit, :update] # anyone can destroy!
   
