@@ -33,14 +33,14 @@ class PostController < ApplicationController
   before_action :current_user_must_be_creator, [:edit, :update] # override defaults so anyone can destroy!
   
   def show
-    current_user_must_be_creator # Nobody but the creator of the object can access it!
+    current_user_must_be_creator # Nobody but the creator of the object can access it
   end
   
 end
 ```
 To make it work with the resource, you need to define the owner of the object.
 ```
-alias :owner, :whatever_the_owner_is
+alias_attribute :owner, :whatever_the_owner_is
 ```
 
 It also accepts an "admin?" method on the user object to override ownership.
