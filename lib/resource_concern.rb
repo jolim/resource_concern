@@ -7,21 +7,18 @@ module ResourceConcern
 
   def get_resource
     set_resource_name
-    if !@resource_class.constantize.exists?(params[:id])
+    unless @resource_class.constantize.exists?(params[:id])
       raise ActionController::RecordNotFound.new('Not Found')
     end
 
     eval "@#{@resource_name} = #{@resource_class}.find params[:id]"
     eval "@resource = @#{@resource_name}"
   end
-  
-private
+
+  private
 
   def set_resource_name
     @resource_class = self.class.to_s.gsub(/Controller/,'').gsub(/.*::/,'').singularize
-    @resource_name = @resource_class.underscore   
+    @resource_name = @resource_class.underscore
   end
-
 end
-
-require 'ownable_concern'
