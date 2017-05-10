@@ -6,19 +6,18 @@ module ResourceConcern
   end
 
   def get_resource
-    set_resource_name
-    unless @resource_class.constantize.exists?(params[:id])
-      raise ActionController::RecordNotFound.new('Not Found')
-    end
-
-    eval "@#{@resource_name} = #{@resource_class}.find params[:id]"
-    eval "@resource = @#{@resource_name}"
+    @resource = resource_class.find(params[:id])
+    instance_variable_set "@#{resource_name}", @resource
   end
 
   private
 
-  def set_resource_name
-    @resource_class = self.class.to_s.gsub(/Controller/,'').gsub(/.*::/,'').singularize
-    @resource_name = @resource_class.underscore
+  def resource_class
+    @resource_class ||=
+      self.class.to_s.gsub(/Controller/, '').gsub(/.*::/, '').singularize.constantize
+  end
+
+  def resource_name
+    resource_class.name.underscore
   end
 end
