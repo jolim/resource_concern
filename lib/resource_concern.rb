@@ -6,18 +6,18 @@ module ResourceConcern
   end
 
   def get_resource
-    @resource = resource_class.find(params[:id])
-    instance_variable_set "@#{resource_name}", @resource
+    @resource = rc_resource_klass.find(params[:id])
+    instance_variable_set "@#{rc_resource_name}", @resource
   end
 
   private
 
-  def resource_class
-    @resource_class ||=
+  def rc_resource_klass
+    @rc_resource_klass ||=
       self.class.to_s.gsub(/Controller/, '').gsub(/.*::/, '').singularize.constantize
   end
 
-  def resource_name
-    resource_class.name.underscore
+  def rc_resource_name
+    rc_resource_klass.name.underscore
   end
 end
