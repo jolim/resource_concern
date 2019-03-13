@@ -19,3 +19,8 @@ class PostController < ApplicationController
 end
 ```
 
+The default resource class is the name of the controller. It throws away any namespace component.
+
+If you want to specify a different resource class, use:
+
+`acts_as_resourceful klass: <Class::Name>`
