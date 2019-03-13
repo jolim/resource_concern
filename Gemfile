@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2'
-gem 'rspec'
+gem 'rails', '> 5'
+gem 'rspec-rails'

@@ -5,6 +5,12 @@ module ResourceConcern
     before_action :get_resource, only: [:destroy, :edit, :show, :update]
   end
 
+  class_methods do
+    def acts_as_resourceful(klass:)
+      @rc_resource_klass = klass
+    end
+  end
+
   def get_resource
     @resource = rc_resource_klass.find(params[:id])
     instance_variable_set "@#{rc_resource_name}", @resource
