@@ -1,13 +1,17 @@
+# frozen_string_literal: true
+
 module ResourceConcern
   extend ActiveSupport::Concern
 
   included do
-    before_action :get_resource, only: [:destroy, :edit, :show, :update]
+    before_action :get_resource, only: %i[destroy edit show update]
   end
 
   class_methods do
     def acts_as_resourceful(klass:)
-      @rc_resource_klass = klass
+      define_method :rc_resource_klass do
+        klass
+      end
     end
   end
 
@@ -15,6 +19,8 @@ module ResourceConcern
     @resource = rc_resource_klass.find(params[:id])
     instance_variable_set "@#{rc_resource_name}", @resource
   end
+
+  alias resource get_resource
 
   private
 
@@ -24,6 +30,6 @@ module ResourceConcern
   end
 
   def rc_resource_name
-    rc_resource_klass.name.underscore
+    rc_resource_klass.name.gsub('::', '_').underscore
   end
 end
